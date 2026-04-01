@@ -5,8 +5,9 @@ import { User } from './models/user.entity';
 @Controller('users')
 export class UserController {
   constructor(private userService: UserService) {}
+
   @Get()
-  all(): Promise<User[]> {
+  async all(): Promise<User[]> {
     return this.userService.all();
   }
 }
