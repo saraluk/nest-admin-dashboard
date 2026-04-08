@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './models/user.entity';
-import { FindOptionsWhere, Repository } from 'typeorm';
+import { DeepPartial, FindOptionsWhere, Repository } from 'typeorm';
 
 @Injectable()
 export class UserService {
@@ -31,7 +31,7 @@ export class UserService {
     };
   }
 
-  async create(data: Partial<User>): Promise<User> {
+  async create(data: DeepPartial<User>): Promise<User> {
     return this.userRepository.save(data);
   }
 
