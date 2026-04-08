@@ -20,4 +20,12 @@ export class UserService {
   async findOne(condition: FindOptionsWhere<User>): Promise<User | null> {
     return this.userRepository.findOneBy(condition);
   }
+
+  async update(id: number, data): Promise<any> {
+    return this.userRepository.update(id, data);
+  }
+
+  async delete(id: number): Promise<any> {
+    return this.userRepository.delete(id);
+  }
 }
