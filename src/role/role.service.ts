@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOptionsWhere, Repository } from 'typeorm';
+import { DeepPartial, FindOptionsWhere, Repository } from 'typeorm';
 import { Role } from './role.entity';
 
 @Injectable()
@@ -13,15 +13,18 @@ export class RoleService {
     return this.roleRepository.find();
   }
 
-  async create(data: Partial<Role>): Promise<Role> {
+  async create(data: DeepPartial<Role>): Promise<Role> {
     return this.roleRepository.save(data);
   }
 
   async findOne(condition: FindOptionsWhere<Role>): Promise<Role | null> {
-    return this.roleRepository.findOneBy(condition);
+    return this.roleRepository.findOne({
+      where: condition,
+      relations: ['permissions'],
+    });
   }
 
-  async update(id: number, data): Promise<any> {
+  async update(id: number, data: DeepPartial<Role>): Promise<any> {
     return this.roleRepository.update(id, data);
   }
 
