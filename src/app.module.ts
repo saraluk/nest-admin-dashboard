@@ -7,6 +7,7 @@ import { RoleModule } from './role/role.module';
 import { PermissionModule } from './permission/permission.module';
 import { ProductModule } from './product/product.module';
 import { UploadController } from './product/upload.controller';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { UploadController } from './product/upload.controller';
     RoleModule,
     PermissionModule,
     ProductModule,
+    OrderModule,
   ],
   controllers: [UploadController],
 })
