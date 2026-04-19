@@ -8,6 +8,8 @@ import { PermissionModule } from './permission/permission.module';
 import { ProductModule } from './product/product.module';
 import { UploadController } from './product/upload.controller';
 import { OrderModule } from './order/order.module';
+import { APP_GUARD } from '@nestjs/core';
+import { PermissionGuard } from './permission/permission.guard';
 
 @Module({
   imports: [
@@ -30,5 +32,11 @@ import { OrderModule } from './order/order.module';
     OrderModule,
   ],
   controllers: [UploadController],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: PermissionGuard,
+    },
+  ],
 })
 export class AppModule {}
